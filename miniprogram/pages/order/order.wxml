@@ -1,0 +1,174 @@
+<!--order.wxml-->
+<view class="page-container">
+  <!-- 顶部导航区 -->
+  <view class="nav-bar">
+    <view class="tab-bar">
+      <view class="tab-item {{currentTab === 'order' ? 'active' : ''}}" bindtap="switchTab" data-tab="order">
+        <text>点餐</text>
+      </view>
+      <view class="tab-item {{currentTab === 'making' ? 'active' : ''}}" bindtap="switchTab" data-tab="making">
+        <text>订单</text>
+        <view wx:if="{{makingOrders.length > 0}}" class="tab-badge">{{makingOrders.length}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 点餐页面 -->
+  <view class="tab-content" wx:if="{{currentTab === 'order'}}">
+    <!-- 标题区域 -->
+    <view class="header-section">
+      <text class="main-title">选择你的</text>
+      <text class="main-title-highlight">美食</text>
+      <text class="sub-title">今天想吃点什么呢？</text>
+    </view>
+
+    <!-- 分类标签 -->
+    <view class="category-tabs">
+      <view 
+        wx:for="{{categories}}" 
+        wx:key="id" 
+        class="category-tab {{currentCategory === item.id ? 'active' : ''}}"
+        bindtap="onCategoryChange"
+        data-id="{{item.id}}"
+      >
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+
+    <!-- 美食列表 -->
+    <scroll-view class="food-list" scroll-y="true" enhanced="true" show-scrollbar="{{false}}">
+      <view class="food-list-inner">
+        <view 
+          wx:for="{{filteredFoods}}" 
+          wx:key="id" 
+          class="food-card"
+        >
+          <view class="food-image-wrapper">
+            <image class="food-image" src="{{item.image}}" mode="aspectFill"></image>
+          </view>
+          <view class="food-info">
+            <text class="food-name">{{item.name}}</text>
+            <text class="food-desc">{{item.description}}</text>
+          </view>
+          <view class="food-action">
+            <view class="add-btn" bindtap="onAddItem" data-id="{{item.id}}" data-image="{{item.image}}">
+              <text>+</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <!-- 飞行动画球 -->
+    <view 
+      wx:for="{{flyBalls}}" 
+      wx:key="id" 
+      class="fly-ball"
+      style="left: {{item.x}}px; top: {{item.y}}px; opacity: {{item.opacity}}; transform: scale({{item.scale}});"
+    >
+      <image class="fly-image" src="{{item.image}}" mode="aspectFill"></image>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="bottom-bar">
+      <view class="total-section" bindtap="onSubmit">
+        <view class="total-count {{cartBounce ? 'bounce' : ''}}">
+          <text class="count-number">{{totalCount}}</text>
+        </view>
+        <view class="total-label">
+          <text class="label-top">TOTAL</text>
+          <text class="label-bottom">下单</text>
+        </view>
+      </view>
+      <view class="voice-btn" bindtouchstart="onVoiceStart" bindtouchmove="onVoiceMove" bindtouchend="onVoiceEnd" bindtouchcancel="onVoiceEnd">
+        <text class="voice-btn-text">按住说话</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 录音遮罩层（移到最外层） -->
+  <view class="recording-mask" wx:if="{{isRecording}}" catchtouchmove="preventMove">
+    <view class="recording-center">
+      <view class="wave-box {{voiceCancel ? 'cancel' : ''}}">
+        <view class="wave-bar"></view>
+        <view class="wave-bar"></view>
+        <view class="wave-bar"></view>
+        <view class="wave-bar"></view>
+        <view class="wave-bar"></view>
+        <view class="wave-bar"></view>
+        <view class="wave-bar"></view>
+      </view>
+    </view>
+    <text class="recording-status">{{voiceCancel ? '松开手指，取消发送' : '正在录音...'}}</text>
+    <view class="recording-bottom">
+      <view class="cancel-area {{voiceCancel ? 'active' : ''}}" bindtap="onVoiceCancel">
+        <text>取消</text>
+      </view>
+      <view class="recording-tip-area">
+        <text class="recording-tip">松开 发送</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 制作中/订单页面 -->
+  <scroll-view class="tab-content making-content" scroll-y="true" wx:if="{{currentTab === 'making'}}">
+    <!-- 空状态（只在没有制作中订单时显示） -->
+    <view class="empty-state" wx:if="{{makingOrders.length === 0}}">
+      <image class="empty-icon" src="/assets/icons/cooking.svg" mode="aspectFit"></image>
+      <text class="empty-text">暂无制作中的订单</text>
+      <text class="empty-hint">Let's cook something special!</text>
+      <view class="go-order-btn" bindtap="switchTab" data-tab="order">
+        <text>快去点餐吧~ →</text>
+      </view>
+    </view>
+
+    <!-- 制作中订单 -->
+    <view wx:if="{{makingOrders.length > 0}}" class="making-list">
+      <view class="making-header">
+        <text class="making-title">正在制作中...</text>
+        <text class="making-hint">美味即将送达 💕</text>
+      </view>
+      
+      <view class="order-cards">
+        <view wx:for="{{makingOrders}}" wx:key="id" class="order-card">
+          <view class="order-card-header">
+            <text class="order-time">{{item.time}}</text>
+            <text class="order-status {{item.allDone ? 'done' : ''}}">{{item.allDone ? '已完成' : '制作中'}}</text>
+          </view>
+          <view class="order-items">
+            <view wx:for="{{item.items}}" wx:for-item="food" wx:key="id" class="order-food-item">
+              <image class="order-food-image" src="{{food.image}}" mode="aspectFill"></image>
+              <view class="order-food-info">
+                <text class="order-food-name">{{food.name}}</text>
+                <text class="order-food-qty">x{{food.quantity}}</text>
+              </view>
+              <view class="order-food-status">
+                <image wx:if="{{food.done}}" class="check-icon" src="/assets/icons/check.svg" mode="aspectFit"></image>
+                <view wx:else class="loading-spinner"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 历史订单 -->
+    <view class="history-section">
+      <text class="history-month">十二月</text>
+      <view class="history-list">
+        <view wx:for="{{historyOrders}}" wx:key="id" class="history-card">
+          <view class="history-date">
+            <text class="date-month">{{item.month}}</text>
+            <text class="date-day">{{item.day}}</text>
+          </view>
+          <view class="history-info">
+            <text class="history-name">{{item.name}} {{item.emoji}}</text>
+          </view>
+          <view class="history-action" bindtap="onSelectHistory" data-id="{{item.id}}">
+            <text>选这个</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

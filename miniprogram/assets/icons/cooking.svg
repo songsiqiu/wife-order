@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    .chef-hat { fill: #ffffff; stroke: #333; stroke-width: 2; }
+    .steam { fill: none; stroke: #ff8c42; stroke-width: 2; stroke-linecap: round; }
+  </style>
+  <!-- 锅 -->
+  <ellipse cx="50" cy="70" rx="35" ry="15" fill="#333"/>
+  <path d="M15 70 Q15 50 50 50 Q85 50 85 70" fill="#555"/>
+  <!-- 蒸汽动画 -->
+  <path class="steam" d="M35 45 Q30 35 35 25">
+    <animate attributeName="d" values="M35 45 Q30 35 35 25;M35 45 Q40 35 35 25;M35 45 Q30 35 35 25" dur="1s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite"/>
+  </path>
+  <path class="steam" d="M50 42 Q45 30 50 20">
+    <animate attributeName="d" values="M50 42 Q45 30 50 20;M50 42 Q55 30 50 20;M50 42 Q45 30 50 20" dur="1.2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite"/>
+  </path>
+  <path class="steam" d="M65 45 Q60 35 65 25">
+    <animate attributeName="d" values="M65 45 Q60 35 65 25;M65 45 Q70 35 65 25;M65 45 Q60 35 65 25" dur="0.8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0.3;1" dur="0.8s" repeatCount="indefinite"/>
+  </path>
+</svg>

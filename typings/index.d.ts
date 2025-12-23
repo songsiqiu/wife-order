@@ -1,4 +1,5 @@
 /// <reference path="./types/index.d.ts" />
+/// <reference path="./order.d.ts" />
 
 interface IAppOption {
   globalData: {

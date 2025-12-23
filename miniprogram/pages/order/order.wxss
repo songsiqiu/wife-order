@@ -1,0 +1,760 @@
+/**order.wxss**/
+page {
+  height: 100vh;
+  background: #f8fafc;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f8fafc;
+  position: relative;
+}
+
+/* ========== 顶部导航栏 ========== */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 32rpx;
+  padding-top: calc(20rpx + env(safe-area-inset-top));
+}
+
+.nav-back,
+.nav-more {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-arrow {
+  font-size: 36rpx;
+  color: #333;
+}
+
+.more-icon {
+  font-size: 28rpx;
+  color: #999;
+  letter-spacing: 2rpx;
+}
+
+.tab-bar {
+  display: flex;
+  background: #fff;
+  border-radius: 40rpx;
+  padding: 6rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.tab-item {
+  position: relative;
+  padding: 14rpx 36rpx;
+  font-size: 28rpx;
+  color: #999;
+  font-weight: 500;
+  border-radius: 34rpx;
+  transition: all 0.3s ease;
+}
+
+.tab-item.active {
+  background: #fff;
+  color: #333;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+}
+
+.tab-badge {
+  position: absolute;
+  top: 4rpx;
+  right: 4rpx;
+  min-width: 28rpx;
+  height: 28rpx;
+  padding: 0 6rpx;
+  background: var(--color-danger, #ff6b6b);
+  border-radius: 14rpx;
+  font-size: 18rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========== Tab 内容区域 ========== */
+.tab-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ========== 标题区域 ========== */
+.header-section {
+  padding: 24rpx 40rpx 16rpx;
+}
+
+.main-title {
+  display: block;
+  font-size: 52rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+  letter-spacing: 1rpx;
+}
+
+.main-title-highlight {
+  display: block;
+  font-size: 52rpx;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.3;
+  letter-spacing: 1rpx;
+}
+
+.sub-title {
+  display: block;
+  font-size: 26rpx;
+  color: #aaa;
+  font-weight: 400;
+  margin-top: 12rpx;
+}
+
+/* ========== 分类标签 ========== */
+.category-tabs {
+  display: flex;
+  padding: 16rpx 40rpx 24rpx;
+  gap: 16rpx;
+}
+
+.category-tab {
+  padding: 16rpx 32rpx;
+  border-radius: 40rpx;
+  background: transparent;
+  border: 2rpx solid #e5e5e5;
+  font-size: 26rpx;
+  color: #666;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.category-tab.active {
+  background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4rpx 16rpx rgba(255, 107, 53, 0.3);
+}
+
+/* ========== 美食列表 ========== */
+.food-list {
+  flex: 1;
+  height: 0;
+  box-sizing: border-box;
+}
+
+.food-list-inner {
+  padding: 0 40rpx;
+  padding-bottom: 280rpx;
+}
+
+.food-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 28rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.04);
+}
+
+.food-image-wrapper {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #f8f4f0 0%, #f0ebe5 100%);
+}
+
+.food-image {
+  width: 100%;
+  height: 100%;
+}
+
+.food-info {
+  flex: 1;
+  padding: 0 24rpx;
+  min-width: 0;
+}
+
+.food-name {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 8rpx;
+}
+
+.food-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* ========== 添加按钮 ========== */
+.food-action {
+  flex-shrink: 0;
+}
+
+.add-btn {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(255, 107, 53, 0.35);
+}
+
+.add-btn:active {
+  transform: scale(0.9);
+}
+
+.add-btn text {
+  font-size: 36rpx;
+  color: #fff;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* ========== 飞行小球 ========== */
+.fly-ball {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 999;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+.fly-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* ========== 底部按钮 ========== */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 24rpx 40rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0) 0%, #f8fafc 30%);
+}
+
+.total-section {
+  display: flex;
+  align-items: center;
+  margin-right: 24rpx;
+}
+
+.total-count {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(102, 126, 234, 0.3);
+}
+
+.total-count.bounce {
+  animation: bounce 0.4s ease;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.3);
+  }
+  60% {
+    transform: scale(0.9);
+  }
+}
+
+.count-number {
+  font-size: 28rpx;
+  color: #fff;
+  font-weight: 600;
+}
+
+.total-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-top {
+  font-size: 20rpx;
+  color: #999;
+  font-weight: 500;
+  letter-spacing: 1rpx;
+}
+
+.label-bottom {
+  font-size: 24rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.voice-btn {
+  flex: 1;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.2);
+}
+
+.voice-btn:active,
+.voice-btn.recording {
+  transform: scale(0.98);
+  background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 53, 0.3);
+}
+
+.voice-btn-text {
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+}
+
+/* ========== 录音遮罩层 ========== */
+.recording-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.recording-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wave-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  padding: 50rpx 80rpx;
+  background: #10b981;
+  border-radius: 28rpx;
+}
+
+.wave-bar {
+  width: 10rpx;
+  height: 50rpx;
+  background: #fff;
+  border-radius: 5rpx;
+  animation: waveAnim 0.5s infinite ease-in-out;
+}
+
+.wave-bar:nth-child(1) {
+  animation-delay: 0s;
+  height: 30rpx;
+}
+.wave-bar:nth-child(2) {
+  animation-delay: 0.1s;
+  height: 50rpx;
+}
+.wave-bar:nth-child(3) {
+  animation-delay: 0.15s;
+  height: 70rpx;
+}
+.wave-bar:nth-child(4) {
+  animation-delay: 0.2s;
+  height: 90rpx;
+}
+.wave-bar:nth-child(5) {
+  animation-delay: 0.15s;
+  height: 70rpx;
+}
+.wave-bar:nth-child(6) {
+  animation-delay: 0.1s;
+  height: 50rpx;
+}
+.wave-bar:nth-child(7) {
+  animation-delay: 0s;
+  height: 30rpx;
+}
+
+@keyframes waveAnim {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.5);
+  }
+}
+
+.recording-status {
+  font-size: 32rpx;
+  color: #fff;
+  margin-top: 60rpx;
+  text-align: center;
+}
+
+.recording-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(40, 40, 40, 0.98) 0%,
+    rgba(30, 30, 30, 1) 100%
+  );
+  border-radius: 80rpx 80rpx 0 0;
+  padding: 60rpx 50rpx;
+  padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cancel-area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30rpx 0;
+  border-radius: 50rpx;
+  background: rgba(255, 255, 255, 0.08);
+  margin-right: 20rpx;
+}
+
+.cancel-area text {
+  font-size: 30rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.cancel-area.active {
+  background: rgba(255, 80, 80, 0.2);
+}
+
+.cancel-area.active text {
+  color: #ff6b6b;
+}
+
+.recording-tip-area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30rpx 0;
+  border-radius: 50rpx;
+  background: #10b981;
+  margin-left: 20rpx;
+}
+
+.recording-tip {
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: 600;
+}
+
+.wave-box.cancel {
+  background: #ff6b6b;
+}
+
+/* ========== 制作中页面样式 ========== */
+.making-content {
+  padding: 0;
+  padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+  overflow-y: auto;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160rpx 40rpx 40rpx;
+}
+
+.empty-icon {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 40rpx;
+  opacity: 0.6;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #999;
+  margin-bottom: 12rpx;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #ccc;
+}
+
+/* 制作中列表 */
+.making-list {
+  padding: 20rpx 40rpx 0;
+}
+
+.making-header {
+  margin-bottom: 30rpx;
+}
+
+.making-title {
+  display: block;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8rpx;
+}
+
+.making-hint {
+  font-size: 26rpx;
+  color: var(--color-primary, #ff8c42);
+}
+
+/* 订单卡片 */
+.order-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.order-card {
+  background: #fff;
+  border-radius: 28rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.04);
+}
+
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.order-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.order-status {
+  font-size: 24rpx;
+  color: var(--color-primary, #ff8c42);
+  font-weight: 500;
+}
+
+.order-status.done {
+  color: var(--color-success, #10b981);
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.order-food-item {
+  display: flex;
+  align-items: center;
+}
+
+.order-food-image {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 12rpx;
+  flex-shrink: 0;
+}
+
+.order-food-info {
+  flex: 1;
+  padding: 0 16rpx;
+}
+
+.order-food-name {
+  display: block;
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.order-food-qty {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.order-food-status {
+  width: 36rpx;
+  height: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+/* ========== 快去点餐按钮 ========== */
+.go-order-btn {
+  margin-top: 40rpx;
+  padding: 20rpx 48rpx;
+  border-radius: 40rpx;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 140, 66, 0.1) 0%,
+    rgba(255, 107, 53, 0.1) 100%
+  );
+}
+
+.go-order-btn text {
+  font-size: 28rpx;
+  color: #ff8c42;
+  font-weight: 500;
+}
+
+/* ========== 历史订单区域 ========== */
+.history-section {
+  margin-top: 60rpx;
+  padding: 0 40rpx 100rpx;
+}
+
+.history-month {
+  display: block;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #999;
+  letter-spacing: 2rpx;
+  margin-bottom: 24rpx;
+  text-transform: uppercase;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.history-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 24rpx 28rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+
+.history-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 24rpx;
+  min-width: 80rpx;
+}
+
+.date-month {
+  font-size: 20rpx;
+  color: #999;
+  font-weight: 500;
+}
+
+.date-day {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #333;
+  line-height: 1.2;
+}
+
+.history-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-name {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 8rpx;
+}
+
+.history-cost {
+  display: flex;
+  align-items: center;
+}
+
+.cost-icon {
+  font-size: 24rpx;
+  margin-right: 8rpx;
+}
+
+.cost-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.history-action {
+  flex-shrink: 0;
+  padding: 14rpx 28rpx;
+  border-radius: 32rpx;
+  background: #fff;
+  border: 2rpx solid #10b981;
+}
+
+.history-action:active {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.history-action text {
+  font-size: 24rpx;
+  color: #10b981;
+  font-weight: 500;
+}
+
+/* 使用全局定义的 .loading-spinner 样式 */
